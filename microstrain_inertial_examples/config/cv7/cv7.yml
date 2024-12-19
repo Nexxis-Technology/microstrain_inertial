@@ -1,6 +1,42 @@
 # You should change this section of config to match your setup
-port : '/dev/microstrain_main'
+# check out https://github.com/LORD-MicroStrain/microstrain_inertial_driver_common/blob/main/config/params.yml
+# for a full list of options.
+
+port : '/tmp/netburn1002'
 baudrate : 115200
+
+
+device_setup: True
+save_settings: False
+
+low_pass_filter_config : False
+
+accel_low_pass_filter_enable    : False
+accel_low_pass_filter_auto      : False
+accel_low_pass_filter_frequency : 1
+
+gyro_low_pass_filter_enable    : False
+gyro_low_pass_filter_auto      : False
+gyro_low_pass_filter_frequency : 1
+
+mag_low_pass_filter_enable    : False
+mag_low_pass_filter_auto      : False
+mag_low_pass_filter_frequency : 1
+
+pressure_low_pass_filter_enable    : False
+pressure_low_pass_filter_auto      : False
+pressure_low_pass_filter_frequency : 1
+
+
+filter_pps_source : 3
+# Configure the GPIO pins
+gpio_config : True
+
+gpio1_feature  : 2  # PPS feature
+gpio1_behavior : 1  # Input behavior (PPS is being input to the device)
+
+# 1 sets it to stamp from 0, using the GPS time (PPS actually). 2 will use ROStime only. 
+timestamp_source: 2
 
 # This will cause the node to convert any NED measurements to ENU
 # This will also cause the node to convert any vehicle frame measurements to the ROS definition of a vehicle frame
@@ -22,10 +58,6 @@ filter_enable_wheeled_vehicle_constraint : True
 # Disable some heading options that do not work for this device
 filter_enable_gnss_pos_vel_aiding : False
 filter_enable_gnss_heading_aiding : False
-
-# This example shows a very basic setup with no PPS sync, so this will disable PPS on the device.
-# Note that if you have any way to provide PPS, you should setup PPS
-filter_pps_source : 0
 
 # Disable the filter declination source. This is required to get the node to start, and isn't doing anything special
 filter_declination_source : 1

@@ -2,10 +2,12 @@
 
 <!-- Standalone example launch file to launch a node that interfaces with a CV7 -->
 <launch>
+    <arg name="params_file" default="/pack/cv7.yml" />
+
   <!-- Specify our custom params file to the microstrin launch file -->
   <include file="$(find microstrain_inertial_driver)/launch/microstrain.launch">
     <arg name="namespace" value="/" />
-    <arg name="params_file" value="$(find microstrain_inertial_examples)/config/cv7/cv7.yml" />
+    <arg name="params_file" value="$(arg params_file)" />
   </include>
 
   <!-- In this example we have no way to publish an actual map transform, so just publish a static one so we can display data on rviz -->
